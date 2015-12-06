@@ -7,6 +7,7 @@ function [tr_data, tr_label, vl_data, vl_label, ts_data] = data_prep(dataformat)
 %   3. Zero Padded Matrix of original data without Serialization CNN
 %   4. Trim or pad the data to match the required length(Didn't work well)
 %   5. DFT Coefficients used to get power distribution
+%   6. MEEC - Mean Energy Freq Entropy Correlation of axes. (Best of all)
 
 load('data/project1.mat')
 % Clean the noisy data by removing them
@@ -53,7 +54,7 @@ switch dataformat
         ts_data = reshape(testDataPad, maxdim*3,[])';
         
     case 2
-        [data, ts_data] = featureMEEC(trainData, testData);
+        [data, ts_data] = featureMSEC(trainData, testData);
         labels = trainAction';
         [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
         
@@ -140,6 +141,11 @@ switch dataformat
         
     case 5
         [data, ts_data] = featureDFT(trainData, testData, 21);
+        labels = trainAction';
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+    
+    case 6
+        [data, ts_data] = featureMEEC(trainData, testData);
         labels = trainAction';
         [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
 end
