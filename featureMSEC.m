@@ -10,21 +10,21 @@ function [ trainXMSEC, testXMSEC ] = featureMSEC( trainX, testX )
 
 % NOTE: NOW ENERGY IS NOT CONSIDERED so the dimension will be [nx9]
 
-trainXMSEC = zeros(size(trainX,2), 9);
-testXMSEC = zeros(size(testX,2), 9);
+trainXMSEC = zeros(size(trainX,2), 15);
+testXMSEC = zeros(size(testX,2), 15);
 
 for i = 1:size(trainX,2)
     a = trainX{1,i};
     if(size(a,1) >= 1)
-        temp = [mean(a), std(a), corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
+        temp = [min(a), max(a), mean(a), std(a), corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
         trainXMSEC(i,:) = temp;
     end
 end
 
 for j = 1:size(testX,2)
-    b = testX{1,j};
-    if(size(b,1) >= 1)
-        temp = [mean(b), std(b), corr(b(:,1),b(:,2)), corr(b(:,2),b(:,3)), corr(b(:,3),b(:,1))];
+    a = testX{1,j};
+    if(size(a,1) >= 1)
+        temp = [min(a), max(a), mean(a), std(a), corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
         testXMSEC(j,:) = temp;
     end
 end

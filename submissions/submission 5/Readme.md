@@ -1,0 +1,1 @@
+Pass the input in [tr_d,tr_l] matrix, so the last column is the target variable.
