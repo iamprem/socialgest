@@ -148,5 +148,10 @@ switch dataformat
         [data, ts_data] = featureMEEC(trainData, testData);
         labels = trainAction';
         [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+    
+    case 7
+        [data, ts_data] = featureM3SEHC(trainData, testData);
+        labels = trainAction';
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
 end
 end
