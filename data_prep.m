@@ -140,7 +140,7 @@ switch dataformat
         ts_data = reshape(testDataTrim, mindim*3,[])';
         
     case 5
-        [data, ts_data] = featureDFT(trainData, testData, 10);
+        [data, ts_data] = featureDFT(trainData, testData, 3);
         labels = trainAction';
         [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
     
@@ -151,6 +151,11 @@ switch dataformat
     
     case 7
         [data, ts_data] = featureM3SEHC(trainData, testData);
+        labels = trainAction';
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+    
+    case 8
+        [data, ts_data] = featureDWT(trainData, testData, 10);
         labels = trainAction';
         [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
 end
