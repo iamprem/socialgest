@@ -12,6 +12,6 @@ Correlation between axes
 
 Validation Accuracy:  0.9583
 Train Accuracy : 0.9270 (validated)
-Test Accuracy (Public) - 
+Test Accuracy (Public) - 0.93750
 
 Saved the model in this folder, which was used to generate the result.

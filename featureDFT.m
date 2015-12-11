@@ -5,8 +5,8 @@ function [ trainXDFT, testXDFT ] = featureDFT( trainX, testX, k )
 % Mean
 
 
-trainXDFT = zeros(size(trainX,2), 21 + 3*k);
-testXDFT = zeros(size(testX,2), 21 + 3*k);
+trainXDFT = zeros(size(trainX,2), 24 + 3*k);
+testXDFT = zeros(size(testX,2), 24 + 3*k);
 
 for i = 1:size(trainX,2)
     a = trainX{1,i};
@@ -20,7 +20,7 @@ for i = 1:size(trainX,2)
 %     maxPow = max(powDist);
 %     powDist = bsxfun(@rdivide,powDist,maxPow); %Scale by dividing max power
     selectedCoeff = reshape(coefmagnitude(2:k+1,:),1,3*k);
-    trainXDFT(i,:) = [selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
+    trainXDFT(i,:) = [ kurtosis(a), selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
          corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
 end
 
@@ -36,7 +36,7 @@ for i = 1:size(testX,2)
 %     maxPow = max(powDist);
 %     powDist = bsxfun(@rdivide,powDist,maxPow); %Scale by dividing max power
     selectedCoeff = reshape(coefmagnitude(2:k+1,:),1,3*k);
-    testXDFT(i,:) = [selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
+    testXDFT(i,:) = [ kurtosis(a), selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
          corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
 end
 

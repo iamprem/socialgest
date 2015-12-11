@@ -50,13 +50,13 @@ switch dataformat
         % Serialize data
         data = reshape(trainDataPad,maxdim*3,[])';
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
         ts_data = reshape(testDataPad, maxdim*3,[])';
         
     case 2
         [data, ts_data] = featureMSEC(trainData, testData);
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
         
     case 3
         % 1. Data Prep with Zero padding
@@ -136,27 +136,27 @@ switch dataformat
         % Serialize data
         data = reshape(trainDataTrim,mindim*3,[])';
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
         ts_data = reshape(testDataTrim, mindim*3,[])';
         
     case 5
-        [data, ts_data] = featureDFT(trainData, testData, 3);
+        [data, ts_data] = featureDFT(trainData, testData, 10);
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
     
     case 6
         [data, ts_data] = featureMEEC(trainData, testData);
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
     
     case 7
         [data, ts_data] = featureM3SEHC(trainData, testData);
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
     
     case 8
         [data, ts_data] = featureDWT(trainData, testData, 10);
         labels = trainAction';
-        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels);
+        [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, 1);
 end
 end

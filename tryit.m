@@ -1,6 +1,6 @@
 bestcv = 0;
-for log2c = 17:20,
-  for log2g = -24:-20,
+for log2c = 1:20,
+  for log2g = -35:10,
     cmd = ['-q -v 5 -t 2 -c ', num2str(2^log2c), ' -g ', num2str(2^log2g)];
     cv = svmtrain(tr_l, tr_d, cmd);
     if (cv >= bestcv),
