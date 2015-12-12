@@ -41,15 +41,15 @@ valtestY = [];%zeros(1, size(valX,2));
 
 % Actual testing
 tic();
-for i = 801:1000%size(testX,2)
+for i = 1:800%size(testX,2)
     
     x = testX{1,i};
     parfor j = 1:size(trainX,2)
         z = trainX{1,j};
         dtw_dist(i,j) = dtw(z, x, 50);
     end
-    [M,I] = min(dtw_dist);
-    testY(i) = trainY(I);
+%     [M,I] = min(dtw_dist(i,:));
+%     testY(i) = trainY(I);
     i
 end
 t2 = toc();
