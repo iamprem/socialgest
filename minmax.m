@@ -1,5 +1,6 @@
 function[maxdim, mindim] = minmax(data)
 % Gives the smallest and largest data points dimension
+% Mainly used this method to get the size of zero padding or trimming.
 
 % Removes empty cell
 data = data(~cellfun(@isempty, data));

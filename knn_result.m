@@ -10,7 +10,7 @@ idx = zeroindices(testData);
 testData(idx) = [];
 
 testY = zeros(1,size(testData,2));
-[values, indices] = nSmallWithIndex(dtw_dist, k);
+[values, indices] = nsmall(dtw_dist, k);
 
 for i = 1:size(indices,1)
    testYList = trainAction(indices(i,:));

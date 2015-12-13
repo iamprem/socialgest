@@ -3,7 +3,7 @@ Feature File: No Features
 Classifier: K-NN with Dynamic Time wrapping distance as distance measurement
 K = 3
 
-Test Accuracy (Public) - 
+Test Accuracy (Public) - 0.97083
 
 Saved the predictions in this folder.
 dtw_dist_full is the DTW distances between all testX and trainX(1200*2400)

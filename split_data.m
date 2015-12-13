@@ -1,6 +1,7 @@
 function [tr_data, tr_label, vl_data, vl_label] = split_data(data, labels, dimtosplit)
 % Split 75% Train and 25% Validation data
-% Percentage argument can be added to get the split percentage
+% dimtosplit - takes 1 or 2 and split in corresponding dimension of the
+% input matrix.
  
 if dimtosplit == 1
     seq = randperm(size(data,1));

@@ -1,12 +1,19 @@
 function [ trainXDFT, testXDFT ] = featureDFT( trainX, testX, k )
 %featureDFT Construct feature vector using first 'k' Discrete Fourier 
-% Transform coefficients. 
+% Transform coefficients and all other descriptive statistics
+% Features:
+%   k DFT Coefficients
+%   Min, Max, Mean, Standard Deviation
+%   Correlation Between Axes
+%   Energy
+%   Entropy
+
 % Note: The first coefficient is excluded because it is captured by the
 % Mean
 
 
-trainXDFT = zeros(size(trainX,2), 24 + 3*k);
-testXDFT = zeros(size(testX,2), 24 + 3*k);
+trainXDFT = zeros(size(trainX,2), 21 + 3*k);
+testXDFT = zeros(size(testX,2), 21 + 3*k);
 
 for i = 1:size(trainX,2)
     a = trainX{1,i};
@@ -17,10 +24,8 @@ for i = 1:size(trainX,2)
     pxx = periodogram(a);
     pxxn = bsxfun(@rdivide,pxx,sum(pxx));
     entropy = -sum(pxxn.*log(pxxn));
-%     maxPow = max(powDist);
-%     powDist = bsxfun(@rdivide,powDist,maxPow); %Scale by dividing max power
     selectedCoeff = reshape(coefmagnitude(2:k+1,:),1,3*k);
-    trainXDFT(i,:) = [ kurtosis(a), selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
+    trainXDFT(i,:) = [ selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
          corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
 end
 
@@ -33,10 +38,8 @@ for i = 1:size(testX,2)
     pxx = periodogram(a);
     pxxn = bsxfun(@rdivide,pxx,sum(pxx));
     entropy = -sum(pxxn.*log(pxxn));
-%     maxPow = max(powDist);
-%     powDist = bsxfun(@rdivide,powDist,maxPow); %Scale by dividing max power
     selectedCoeff = reshape(coefmagnitude(2:k+1,:),1,3*k);
-    testXDFT(i,:) = [ kurtosis(a), selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
+    testXDFT(i,:) = [ selectedCoeff, min(a), max(a), mean(a), std(a), energy, entropy, ...
          corr(a(:,1),a(:,2)), corr(a(:,2),a(:,3)), corr(a(:,3),a(:,1))];
 end
 

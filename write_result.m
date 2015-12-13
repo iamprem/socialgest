@@ -1,5 +1,6 @@
 function write_result( prediction, filename )
-%WRITE_RESULT Write results to a file in csv format
+% Write results to a file in csv format that kaggle.com
+% accepts for submission.
 %   prediction - Final prediction for testData
 %   filename   - File name including file extension .csv
 
@@ -8,5 +9,3 @@ filename = strcat('result','/',filename);
 csvwrite_with_headers(filename, result, {'Id','Prediction'});
 
 end
-
- 
