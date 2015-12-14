@@ -7,5 +7,6 @@ function write_result( prediction, filename )
 result = [reshape(1:size(prediction),[],1), prediction];
 filename = strcat('result','/',filename);
 csvwrite_with_headers(filename, result, {'Id','Prediction'});
+fprintf('Check "result/" directory for the output file\n');
 
 end
